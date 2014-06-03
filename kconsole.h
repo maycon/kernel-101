@@ -42,6 +42,8 @@ void console_set_background_color(unsigned int color);
 
 void clear_all();
 
+void console_put_char(char c);
+
 void console_write_text(char *ptr);
 
 #endif

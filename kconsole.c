@@ -38,6 +38,10 @@ void clear_all()
 			console_put_char(' ');
 		}
 	}
+
+	// Position: (0, 0)
+	_console_column_position = 0;
+	_console_line_position = 0;
 }
 
 void console_init()
@@ -49,9 +53,19 @@ void console_init()
 	// Initial cleaning
 	clear_all();
 
-	// Position: (0, 0)
-	_console_column_position = 0;
-	_console_line_position = 0;
+}
+
+void console_scroll_down()
+{
+	unsigned int i;
+	char *console_ptr = CONSOLE_ADDR;
+
+	for (i = 0; i < MAX_LINES * (MAX_COLUMNS - 1) * 2; i++) {
+		console_ptr[i] = console_ptr[i + MAX_COLUMNS];
+		console_ptr[i + 1] = console_ptr[i + MAX_COLUMNS + 1];
+	}
+
+
 }
 
 void console_put_char(char c)
@@ -59,8 +73,13 @@ void console_put_char(char c)
 	unsigned int console_position;
 	char *console_ptr = CONSOLE_ADDR;
 
+	if (c == '\n') {
+		_console_column_position = 0;
+		_console_line_position++;
+		return;
+	}
 	// Calcule the memory position
-	console_position = (_console_line_position*MAX_LINES + _console_column_position) * 2;
+	console_position = (_console_line_position*MAX_COLUMNS + _console_column_position) * 2;
 
 	// Write the byte respecting the color
 	console_ptr[console_position] = c;
