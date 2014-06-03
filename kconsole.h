@@ -27,7 +27,7 @@
 #define COLOR_LIGHT_BROWN 0xe
 #define COLOR_WHITE 0xf
 
-#define DEFAULT_TEXT_COLOR COLOR_RED
+#define DEFAULT_TEXT_COLOR COLOR_LIGHT_GREY
 #define DEFAULT_BACKGROUND_COLOR COLOR_BLACK
 
 #define MAX_LINES 25
@@ -42,5 +42,6 @@ void console_set_background_color(unsigned int color);
 
 void clear_all();
 
+void console_write_text(char *ptr);
 
 #endif
