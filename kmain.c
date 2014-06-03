@@ -1,5 +1,5 @@
 /**
- *  kernel.c
+ *  kmain.c
  */
 
 #include "kconsole.h"
