@@ -5,6 +5,8 @@
  * kconsole.h
  */
 
+#include "types.h"
+
 // Start of console memory addres in P-Mode
 #define CONSOLE_ADDR (char *)0xb8000
 
@@ -41,13 +43,15 @@ void clear_all();
 
 void console_scroll_down();
 
-void console_set_text_color(unsigned int color);
-void console_set_background_color(unsigned int color);
+void console_set_text_color(uint32 color);
+void console_set_background_color(uint32 color);
 
 void console_put_char(char c);
-void console_put_char_at(char c, unsigned int line, unsigned int column);
+void console_put_char_at(char c, uint32 line, uint32 column);
 
 void console_write_text(char *ptr);
-void console_write_text_at(char *msg, unsigned int line, unsigned int column);
+void console_write_text_at(char *msg, uint32 line, uint32 column);
+
+void console_write_hex(uint32 num);
 
 #endif

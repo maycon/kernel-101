@@ -5,12 +5,12 @@
 #include "kconsole.h"
 
 // colors
-static unsigned int _console_text_color;
-static unsigned int _console_background_color;
+static uint32 _console_text_color;
+static uint32 _console_background_color;
 
 // positions
-static unsigned int _console_line_position;
-static unsigned int _console_column_position;
+static uint32 _console_line_position;
+static uint32 _console_column_position;
 
 void console_init()
 {
@@ -25,7 +25,7 @@ void console_init()
 
 void clear_all()
 {
-	unsigned int i, j, console_position;
+	uint32 i, j, console_position;
 	char *console_ptr = CONSOLE_ADDR;
 
 	// Starting
@@ -47,9 +47,10 @@ void clear_all()
 
 void console_scroll_down()
 {
-	unsigned int i, j, console_position, next_position;
+	uint32 i, j, console_position, next_position;
 	char *console_ptr = CONSOLE_ADDR;
 
+	// Shift the memory data
 	for (i = 0; i < MAX_LINES - 1; i++) {
 		for (j = 0; j < MAX_COLUMNS; j++) {
 			console_position = (i*MAX_COLUMNS + j) * 2;
@@ -71,12 +72,12 @@ void console_scroll_down()
 	}
 }
 
-void console_set_text_color(unsigned int color)
+void console_set_text_color(uint32 color)
 {
 	_console_text_color = color;
 }
 
-void console_set_background_color(unsigned int color)
+void console_set_background_color(uint32 color)
 {
 	_console_background_color = color;
 }
@@ -84,7 +85,7 @@ void console_set_background_color(unsigned int color)
 
 void console_put_char(char c)
 {
-	unsigned int console_position;
+	uint32 console_position;
 	char *console_ptr = CONSOLE_ADDR;
 
 	switch (c) {
@@ -117,10 +118,10 @@ void console_put_char(char c)
 	}
 }
 
-void console_put_char_at(char c, unsigned int line, unsigned int column)
+void console_put_char_at(char c, uint32 line, uint32 column)
 {
-	unsigned int console_line_position;
-	unsigned int console_column_position;
+	uint32 console_line_position;
+	uint32 console_column_position;
 
 	// Save the current position
 	console_line_position = _console_line_position;
@@ -147,10 +148,10 @@ void console_write_text(char *msg)
 	}
 }
 
-void console_write_text_at(char *msg, unsigned int line, unsigned int column)
+void console_write_text_at(char *msg, uint32 line, uint32 column)
 {
-	unsigned int console_line_position;
-	unsigned int console_column_position;
+	uint32 console_line_position;
+	uint32 console_column_position;
 
 	// Save the current position
 	console_line_position = _console_line_position;
@@ -165,4 +166,21 @@ void console_write_text_at(char *msg, unsigned int line, unsigned int column)
 	_console_line_position = console_line_position;
 	_console_column_position = console_column_position;
 
+}
+
+// TODO: implement
+void console_write_dec(uint32 num)
+{
+
+}
+
+void console_write_hex(uint32 num)
+{
+	int32 i, val;
+
+	console_write_text("0x");
+	for (i = 28; i >= 0; i -= 4) {
+		val = (num >> i) & 0xF;
+		console_put_char(val < 0xA ? '0' + val : 'A' + val - 0xA);
+	}
 }
