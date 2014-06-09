@@ -52,6 +52,7 @@ void console_put_char_at(char c, uint32 line, uint32 column);
 void console_write_text(char *ptr);
 void console_write_text_at(char *msg, uint32 line, uint32 column);
 
+void console_write_dec(uint32 num);
 void console_write_hex(uint32 num);
 
 #endif

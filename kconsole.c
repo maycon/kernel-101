@@ -168,10 +168,32 @@ void console_write_text_at(char *msg, uint32 line, uint32 column)
 
 }
 
-// TODO: implement
 void console_write_dec(uint32 num)
 {
+#define MAX_DIG_32 10
 
+	unsigned int dec[MAX_DIG_32 + 1], i, pos, dig;
+
+	dec[0] = 0; dec[1] = 1;
+
+	for (i = 2; i <= MAX_DIG_32; i++) {
+		dec[i] = dec[i - 1]*10;
+	}
+
+	i = MAX_DIG_32;
+	while (num < dec[i]) i--;
+
+	for (; i > 0; i--) {
+		if (num >= dec[i]) {
+			dig = num / dec[i];
+			num = num % dec[i];
+			console_put_char('0' + dig);
+		} else {
+			console_put_char('0');
+		}
+	}
+
+#undef MAX_DIG_32
 }
 
 void console_write_hex(uint32 num)
