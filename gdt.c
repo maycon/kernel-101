@@ -4,8 +4,6 @@
 
 #include "gdt.h"
 
-#define NUM_SEGMENTS 5
-
 gdt_entry_t gdt_entries[] = {
 	// Dummy segment
 	GDTR(0, 0, 0, 0),
