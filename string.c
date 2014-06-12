@@ -5,13 +5,13 @@
 #include "string.h"
 
 
-void *memset(void *src, uint8 c, size_t n)
+void *memset(void *ptr, uint8 c, size_t n)
 {
 	uint32 i;
 
 	for (i = 0; i < n; i++) {
-		src[i] = (char)c;
+		((char *)ptr)[i] = (char)c;
 	}
 
-	return src;
+	return ptr;
 }

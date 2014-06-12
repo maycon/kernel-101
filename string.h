@@ -7,7 +7,7 @@
 
 #include "types.h"
 
-void *memset(void *src, uint8 c, size_t n);
+void *memset(void *ptr, uint8 c, size_t n);
 
 
 #endif
