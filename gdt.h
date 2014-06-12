@@ -28,7 +28,7 @@
 	.base_middle = (base >> 16) & 0xFF,                              \
 	.access_byte = (access | 0x90),                                  \
 	.base_high = (base >> 24) & 0xFF,                                \
-	.granularity = flags | ((limit >> 16) & 0x0F)    \
+	.granularity = flags | ((limit >> 16) & 0x0F)                    \
 }
 
 
