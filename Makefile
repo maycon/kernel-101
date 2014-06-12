@@ -9,7 +9,7 @@ LFLAGS = -m elf_i386 -T link.ld
 NASMFLAGS = -f elf32 
 
 SRC_C = gdt.c idt.c io.c kconsole.c kmain.c string.c
-SRC_ASM = gdt_asm.s  idt_asm.s  kcall.s
+SRC_ASM = gdt_asm.s idt_asm.s kcall.s
 
 OBJS = $(SRC_C:.c=.o) $(SRC_ASM:.s=.o)
 
