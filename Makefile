@@ -10,8 +10,8 @@ CFLAGS = -I$(INC_DIR) -m32 -c -fno-builtin -ggdb
 LFLAGS = -m elf_i386 -T link.ld 
 NASMFLAGS = -f elf32 
 
-SRC_C = gdt.c idt.c io.c kconsole.c kmain.c string.c
-SRC_ASM = gdt_asm.s idt_asm.s kcall.s
+SRC_C = gdt.c idt.c io.c kconsole.c kmain.c string.c isr.c
+SRC_ASM = isr_asm.s gdt_asm.s idt_asm.s kcall.s
 
 OBJS = $(SRC_C:.c=.o) $(SRC_ASM:.s=.o)
 
