@@ -8,8 +8,8 @@
 #include "types.h"
 
 // GDT entry flags
-#define GDT_GR_4KB (1 << 3)
-#define GDT_SZ_32B (1 << 2)
+#define GDT_GR_4KB (1 << 6)
+#define GDT_SZ_32B (1 << 7)
 
 // GDT entry access
 #define GDT_RW (1 << 1)
@@ -25,10 +25,10 @@
 {                                                                    \
 	.limit_low = limit & 0xFFFF,                                     \
 	.base_low = base & 0xFFFF,                                       \
-	.base_middle = (base >> 16) & 0x0F,                              \
+	.base_middle = (base >> 16) & 0xFF,                              \
 	.access_byte = (access | 0x90),                                  \
-	.base_high = (base >> 24) & 0x0F,                                \
-	.granularity = ((flags << 4) & 0xF0) | ((limit >> 16) & 0x0F)    \
+	.base_high = (base >> 24) & 0xFF,                                \
+	.granularity = flags | ((limit >> 16) & 0x0F)    \
 }
 
 
@@ -52,7 +52,7 @@ typedef struct gdt_entry_struct gdt_entry_t;
 typedef struct gdt_struct gdt_t;
 
 extern void set_gdt(uint32);
-extern void reload_data_segments();
+extern void reload_segments();
 
 void gdt_init();
 

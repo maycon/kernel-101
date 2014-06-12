@@ -22,4 +22,4 @@ clean:
 	rm -rf *.o kernel
 
 run: all
-	qemu-system-i386 -kernel kernel
+	qemu-system-i386 -s -kernel kernel

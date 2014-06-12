@@ -10,7 +10,7 @@ gdt_entry_t gdt_entries[] = {
 
 	// Kernel space (ring-0)
 	GDTR(0, 0xFFFFFFFF, GDT_RING0 | GDT_EXEC | GDT_RW, GDT_GR_4KB | GDT_SZ_32B),
-	GDTR(0, 0xFFFFFFFF,	GDT_RING0 | GDT_RW,	GDT_GR_4KB | GDT_SZ_32B),
+	GDTR(0, 0xFFFFFFFF, GDT_RING0 | GDT_RW, GDT_GR_4KB | GDT_SZ_32B),
 
 	// User space (ring-3)
 	GDTR(0, 0xFFFFFFFF,	GDT_RING3 | GDT_EXEC | GDT_RW, GDT_GR_4KB | GDT_SZ_32B),
@@ -25,5 +25,5 @@ void gdt_init()
 	gdt.base = (uint32)&gdt_entries;
 
 	set_gdt((uint32)&gdt);
-	reload_data_segments();
+	reload_segments();
 }
