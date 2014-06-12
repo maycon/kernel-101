@@ -1,25 +1,37 @@
-kmain:
-	gcc -m32 -c kmain.c -o kmain.o  -ggdb
+PROG = kernel
 
-kcall:
-	nasm -f elf32 kcall.asm -o kcall.o
+CC = gcc
+NASM = nasm
+LD = ld
 
-kconsole:
-	gcc -m32 -c kconsole.c -o kconsole.o -ggdb
+CFLAGS = -m32 -c -fno-builtin -ggdb
+LFLAGS = -m elf_i386 -T link.ld 
+NASMFLAGS = -f elf32 
 
-io:
-	gcc -m32 -c io.c -o io.o -ggdb
+SRC_C = gdt.c idt.c io.c kconsole.c kmain.c string.c
+SRC_ASM = gdt_asm.s  idt_asm.s  kcall.s
 
-gdt:
-	nasm -f elf32 gdt.asm -o gdt_flush.o
-	gcc -m32 -c gdt.c -o gdt.o  -ggdb
+OBJS = $(SRC_C:.c=.o) $(SRC_ASM:.s=.o)
 
+default: all
 
-all: kcall kmain kconsole io gdt
-	ld -m elf_i386 -T link.ld -o kernel kcall.o kmain.o  kconsole.o gdt.o gdt_flush.o
+all: $(PROG)
+
+$(PROG): $(OBJS)
+	@echo [LD] $@
+	@$(LD) $(LFLAGS) $(OBJS) -o $(PROG) 
 
 clean:
-	rm -rf *.o kernel
+	@$(RM) *.o kernel
+	@echo Done.
 
-run: all
+qemu: all
 	qemu-system-i386 -s -kernel kernel
+
+%.o: %.c
+	@echo [CC] $< \-\> $@
+	@$(CC) $(CFLAGS) -c -o $@ $<
+
+%.o: %.s
+	@echo [ASM] $< \-\> $@
+	@$(NASM) $(NASMFLAGS) -o $@ $<
