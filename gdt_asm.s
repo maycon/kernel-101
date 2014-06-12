@@ -22,5 +22,5 @@ reload_segments:
 
 	jmp 0x08:.return       ; Far jump. Set CS to 0x08
 
-.return
+.return:
 	ret
