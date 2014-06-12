@@ -2,7 +2,7 @@
  * gdt.c
  */
 
-#include "gdt.h"
+#include <gdt.h>
 
 gdt_entry_t gdt_entries[] = {
 	// Dummy segment

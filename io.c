@@ -2,7 +2,7 @@
  * io.c
  */
 
-#include "io.h"
+#include <io.h>
 
 static inline void outb(int16 port, int8 value)
 {

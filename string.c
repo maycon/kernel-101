@@ -2,7 +2,7 @@
  * string.c
  */
 
-#include "string.h"
+#include <string.h>
 
 
 void *memset(void *ptr, uint8 c, size_t n)

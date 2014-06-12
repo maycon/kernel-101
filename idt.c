@@ -2,8 +2,8 @@
  * idt.c
  */
 
-#include "idt.h"
-#include "string.h"
+#include <idt.h>
+#include <string.h>
 
 idt_entry_t idt_entries[IDT_ENTRIES];
 idt_t idt;

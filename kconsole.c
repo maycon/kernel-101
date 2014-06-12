@@ -2,7 +2,7 @@
  * kconsole.c
  */
 
-#include "kconsole.h"
+#include <kconsole.h>
 
 // colors
 static uint32 _console_text_color;

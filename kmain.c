@@ -2,10 +2,10 @@
  *  kmain.c
  */
 
-#include "kconsole.h"
-#include "gdt.h"
-#include "idt.h"
- 
+#include <kconsole.h>
+#include <gdt.h>
+#include <idt.h>
+
 void kmain(void)
 {
 	gdt_init();

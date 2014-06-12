@@ -4,7 +4,9 @@ CC = gcc
 NASM = nasm
 LD = ld
 
-CFLAGS = -m32 -c -fno-builtin -ggdb
+INC_DIR = ./include
+
+CFLAGS = -I$(INC_DIR) -m32 -c -fno-builtin -ggdb
 LFLAGS = -m elf_i386 -T link.ld 
 NASMFLAGS = -f elf32 
 
