@@ -7,5 +7,11 @@
 
 void *memset(void *src, uint8 c, size_t n)
 {
-	return NULL;
+	uint32 i;
+
+	for (i = 0; i < n; i++) {
+		src[i] = (char)c;
+	}
+
+	return src;
 }
