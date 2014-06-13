@@ -9,6 +9,6 @@ global set_idt
 
 set_idt:
 	mov eax, [esp + 0x04]  ; idt_t passed as argument
-	sidt [eax]             ; Load
+	lidt [eax]             ; Load
 	ret
 

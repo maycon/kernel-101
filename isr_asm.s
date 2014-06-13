@@ -11,9 +11,9 @@ section .text
 	global isr%1
 
 	isr%1:
-		cli
-		push 0
-		push %1
+		cli              ; Disable interrupts
+		push 0           ; Dummy error code
+		push %1          ; Interrupt number
 		jmp isr_stub
 %endmacro
 
@@ -21,8 +21,8 @@ section .text
 	global isr%1
 
 	isr%1:
-		cli
-		push %1
+		cli              ; Disable interrupts
+		push %1          ; Interrupt number
 		jmp isr_stub
 %endmacro
 
