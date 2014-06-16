@@ -1,0 +1,76 @@
+CODE STYLE
+==========
+
+
+This file describe a code style ....
+
+
+1. Header on each file
+
+/*
+ * @author: Name of original author
+ * @description: a short description of the file
+ * @date: creation date
+ *
+ * More detailed description (optional)
+ *
+ * CHANGES
+ * - dd/mm/yy - short description
+ * - dd/mm/yy - short description
+ * - dd/mm/yy - short description
+ *
+ */
+
+
+
+2. Identifiers
+
+- Functions and variables name in lower case
+- more_than_one_word identifiers separeted by underline
+- CONSTANTE upper case
+
+
+3. Identation
+
+- Use just ONE tab per identation (not spaces)
+- Use spaces just do alignment
+
+
+4. Braces
+
+- Braces after functions MUST be placed at a new line:
+
+function foo()
+{
+	
+}
+
+- All others open braces (if, for, switch, while so on) are at the end of line:
+
+if (true) {
+	/* foo */
+}
+
+for (i = 0; i < sz; i++) {
+	/* bar */
+}
+
+
+5. Comments
+
+- Function in a header file (.h) MUST be prepended by the follow header:
+
+/**
+ * Short description of function
+ *
+ * @param   first   meaning of parameter 'fist'
+ * @param   second  meaning of parameter 'second'
+ * @param   third   meaning of parameter 'third'
+ *
+ * @return          meaning of return value
+ *           0      meaning of return value 0
+ *           1      meaning of return value 1
+ *           CONST  meaning of return value CONST
+ *
+ * More detailed description (optional)
+ */
